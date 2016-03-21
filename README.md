@@ -131,14 +131,12 @@
   1. Install pip installer:
     `$ sudo apt-get install python-pip`
   2. Install required packages
-    `shell
-    $ apt-get -qqy install postgresql python-psycopg2
-    $ apt-get -qqy install python-sqlalchemy
-    $ pip install Flask==0.9
-    $ pip install oauth2client==1.5.2
-    $ pip install requests
-    $ pip install httplib2
-    `
+    - `$ apt-get -qqy install postgresql python-psycopg2`
+    - `$ apt-get -qqy install python-sqlalchemy`
+    - `$ pip install Flask==0.9`
+    - `$ pip install oauth2client==1.5.2`
+    - `$ pip install requests`
+    - `$ pip install httplib2`
 
 5. Configure and Enable a New Virtual Host#
   1. Create a virtual host config file

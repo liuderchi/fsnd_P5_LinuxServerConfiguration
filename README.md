@@ -34,6 +34,12 @@
   `$ sudo apt-get update`
 2. Install newer vesions of packages you have:
   `$ sudo sudo apt-get upgrade`
+3. Include cron scripts to automatically manage package updates
+  1. Install the unattended-upgrades package:
+    `$ sudo apt-get install unattended-upgrades`
+  2. Enable the unattended-upgrades package:
+    `$ sudo dpkg-reconfigure -plow unattended-upgrades`
+
 
 ### 6 - Change the SSH port from 22 to 2200 and configure SSH access
 
@@ -69,6 +75,29 @@
   `$ sudo ufw allow 123/udp`
 5. Enable firewall
   `$ sudo ufw enable`
+
+#### 7.2 - Configure Firewall to monitor for repeated unsuccessful login attempts and ban attackers
+
+1. Install Fail2ban:
+  `$ sudo apt-get install fail2ban`
+2. Copy the default config file:
+  `$ sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local`
+3. Check and change the default parameters:
+    1. Open the local config file:
+      `$ sudo vim /etc/fail2ban/jail.local`
+    2. Set the following Parameters:
+    ```
+      set bantime  = 1800
+      destemail = YOURNAME@DOMAIN
+      action = %(action_mwl)s
+      under [ssh] change port = 2200
+    ```
+4. Install needed software for our configuration:
+  `$ sudo apt-get install sendmail iptables-persistent`
+5. Stop the service:
+  `$ sudo service fail2ban stop`
+6. Start it again:
+  `$ sudo service fail2ban start`
 
 ### 8 - Configure the local timezone to UTC
 
